@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>十班专属学习资料库</title>
+    <style>
+        body { font-family: 'Comic Sans MS', 'Microsoft YaHei', sans-serif; text-align: center; padding-top: 40px; min-height: 100vh; margin: 0; background: linear-gradient(to right, #ffe6e6, #e6f0ff); overflow: hidden; }
+        .box { background: rgba(255, 255, 255, 0.95); width: 380px; margin: 0 auto; padding: 40px 30px; border-radius: 25px; box-shadow: 0 10px 25px rgba(255, 182, 193, 0.4); border: 2px dashed #ffb6c1; position: relative; z-index: 10; }
+        h2 { color: #ff6b81; margin-bottom: 10px; text-shadow: 1px 1px 2px #ffb6c1; }
+        input { width: 85%; padding: 12px 15px; margin: 12px 0; border: 2px solid #dbe4ff; border-radius: 15px; font-size: 15px; outline: none; transition: all 0.3s; background-color: #f8faff; }
+        input:focus { border-color: #74b9ff; box-shadow: 0 0 8px rgba(116, 185, 255, 0.5); background-color: #fff; }
+        button { width: 95%; padding: 14px; background: linear-gradient(to right, #ff9a9e, #fecfef); color: white; border: none; border-radius: 20px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 15px; box-shadow: 0 5px 15px rgba(255, 154, 158, 0.4); transition: all 0.2s; }
+        button:hover { transform: translateY(-2px) scale(1.02); }
+        button:active { transform: translateY(2px) scale(0.98); }
+        #resourcePage { display: none; }
+        .links { display: flex; flex-direction: column; gap: 15px; margin-top: 25px;}
+        a { text-decoration: none; color: #555; padding: 15px; border-radius: 18px; font-size: 18px; font-weight: bold; display: block; transition: all 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        a:hover { transform: translateX(5px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
+        .link-en { background-color: #ffefef; color: #ff6b81; }
+        .link-math { background-color: #eff6ff; color: #4a90e2; }
+        .link-linear { background-color: #f5efff; color: #9b59b6; }
+        .link-code { background-color: #effff5; color: #2ecc71; }
+        .star { position: absolute; font-size: 24px; opacity: 0.6; animation: float 3s ease-in-out infinite; z-index: 1; }
+        .star:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+        .star:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+        .star:nth-child(3) { bottom: 20%; left: 10%; animation-delay: 0.5s; }
+        .star:nth-child(4) { bottom: 15%; right: 20%; animation-delay: 1.5s; }
+        @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(10deg); } 100% { transform: translateY(0px) rotate(0deg); } }
+    </style>
+</head>
+<body>
+<div class="star">✨</div>
+<div class="star">🌸</div>
+<div class="star">⭐</div>
+<div class="star">🐻</div>
+
+<div id="loginPage" class="box">
+    <h2>🐻 十班专属资料库 🐻</h2>
+    <p style="color: #888; font-size: 14px;">👉 请填写真实姓名与学号哦 👈</p>
+    <input type="text" id="name" placeholder="🐰 姓名 (如：张三)">
+    <input type="text" id="studentId" placeholder="🎒 学号 (如：20230001)">
+    <button onclick="checkLogin()">🌸 验证并进入 🌸</button>
+</div>
+
+<div id="resourcePage" class="box">
+    <h2>🎉 欢迎，<span id="showName"></span> 同学！</h2>
+    <p style="color: #888; font-size: 14px;">✅ 验证通过，选一个开始学习吧！</p>
+    <div class="links">
+        <!-- ⚠️ 改这里：把 href 里的链接换成你自己的 -->
+        <a href="https://pan.baidu.com" target="_blank" class="link-en">📚 英语专区</a>
+        <a href="https://pan.baidu.com" target="_blank" class="link-math">📐 高数专区</a>
+        <a href="https://pan.baidu.com" target="_blank" class="link-linear">🧮 线性代数专区</a>
+        <a href="https://pan.baidu.com" target="_blank" class="link-code">💻 程序设计专区</a>
+    </div>
+</div>
+
+<script>
+    // ⚠️ 改这里：把下面这几个假名字换成你们班真实的名单
+    const studentList = {
+        "20262398": "沈仁易",
+        "20262416": "王澍涵",
+        "20262388": "孙晨亮",
+        "20262389": "张敬太",
+        "20262413": "付莹玉",
+        "20262394": "胡英杰",
+        "20262395": "胡承军",
+        "20262396": "高东辰",
+        "20262397": "熊正",
+        "20262399": "熊俊翔",
+        "20262400": "尧璟成",
+        "20262401": "吴梓豪",
+        "20262402": "宋晟睿",
+        "20262403": "刘家乐",
+        "20262404": "葛安程",
+        "20262405": "张锦议",
+        "20262406": "李仁哲",
+        "20262407": "郭海鹏",
+        "20262408": "马一鸣",
+        "20262409": "李秉锐",
+        "20262410": "王子琦",
+        "20262411": "刘繁",
+        "20262412": "陈宏清",
+        "20262414": "花维娟",
+        "20262415": "谭喜戈",
+        "20262417": "李采畅",
+        "20262418": "陈璐",
+        "20262419": "刘婧怡",
+        "20262420": "李柠竹",
+        "20262421": "施湘宜",
+        "20262422": "王翊欣",
+        "20262390": "王宇轩",
+        "20262391": "居俊豪",
+        "20262392": "林健坤",
+        "20262393": "丁卯云"
+    };
+
+    function checkLogin() {
+        const name = document.getElementById('name').value.trim();
+        const studentId = document.getElementById('studentId').value.trim();
+        if (name === "" || studentId === "") { alert("(>_<) 姓名和学号都不能为空哦！"); return; }
+        if (studentList[studentId]) {
+            if (studentList[studentId] === name) {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('resourcePage').style.display = 'block';
+                document.getElementById('showName').innerText = name;
+            } else { alert("(・_・;) 姓名与学号不匹配，是不是打错啦？"); }
+        } else { alert("(O_o)?? 未找到该学号，你真的是十班的吗？"); }
+    }
+</script>
+</body>
+</html>
